@@ -36,18 +36,13 @@ export default function MenuProvider({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
-  const body: HTMLElement = document.body;
-  const scrollBarWidth: number = body.offsetWidth - body.scrollWidth;
-
   const toggleOverflow = useCallback(() => {
     if (isOpen || isSearchOpen) {
-      body.style.overflow = 'hidden';
-      body.style.paddingRight = `${scrollBarWidth}px`;
+      document.body.style.overflow = 'hidden';
     } else {
-      body.style.overflow = 'auto';
-      body.style.paddingRight = '0px';
+      document.body.style.overflow = 'auto';
     }
-  }, [body.style, isOpen, isSearchOpen, scrollBarWidth]);
+  }, [isOpen, isSearchOpen]);
 
   useEffect(() => {
     toggleOverflow();
